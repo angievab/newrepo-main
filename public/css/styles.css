@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css?family=Cinzel");
+@import url("https://fonts.googleapis.com/css?family=Fauna+One");
+
+/* General */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: none;
+}
+
+h1,
+h2,
+a{
+  font-family: 'Fauna One', serif;
+}
+
+#wrapper {
+  border: none;
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0rem;
+  width: 100%;
+}
+
+/* Header */
+#top-header {
+  margin: 1rem 0rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.siteName a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: #262626;
+  font-weight: 500;
+}
+
+#tools a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #262626;
+  text-transform: uppercase;
+}
+
+.navHead {
+  background: #EDC7B7;
+  text-decoration: none;
+}
+
+.navHead ul {
+  list-style-type: none;
+  font-size: 1rem;
+  padding: 0.5rem 0rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-inline-start: 0;
+  font-family: 'Cinzel', serif;
+}
+
+/* Body */
+main > h1 {
+  color: #262626;
+  font-weight: 700;
+}
+
+section {
+  background-image: url("/images/vehicles/delorean.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 260px;
+  display: flex;
+  align-items: center;
+}
+
+section > div {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.75rem;
+  width: max-content;
+  margin-left: 5%;
+}
+
+section > div h2 {
+  font-family: 'Fauna One', serif;
+  font-weight: 500;
+  margin-top: 0rem;
+  margin-bottom: 0.25rem;
+}
+
+section > div p {
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+section > div p:last-child {
+  margin-bottom: 0.25rem;
+}
+
+section button {
+  background: #EDC7B7;
+  width: 100%;
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-color: rgba(255, 255, 255, 0.5);
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+article {
+  display: grid;
+  grid-template-areas:
+    "reviews"
+    "upgrades";
+  gap: 0.5rem;
+}
+
+article > div h2 {
+  color: #262626;
+}
+
+.upgradeSection {
+  grid-area: upgrades;
+}
+
+.reviews {
+  grid-area: reviews;
+}
+
+.parts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.parts > div {
+  height: 100%;
+  text-align: center;
+}
+
+.parts > div > div {
+  background: #EDC7B7;
+  padding: 0.25rem;
+  border: 1px solid #262626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-height: 75px;
+}
+
+.parts img {
+  max-width: 65px;
+  width: auto;
+  max-height: 65px;
+  height: auto;
+}
+
+.parts a {
+  font-size: 0.9rem;
+}
+
+.reviews nav ul {
+  padding-inline-start: 20px;
+}
+
+.reviews nav ul li {
+  color: #262626;
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+  margin: 1rem 0;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: #262626;
+  margin: 0;
+}
+
+@media screen and (min-width: 900px) {
+  body {
+    background-image: url("/images/site/checkerboard.jpg");
+    background-repeat: repeat;
+  }
+
+  #wrapper {
+    border: 4px solid #EDC7B7;
+    padding: 0rem 0.5rem;
+    width: 60%;
+    margin: auto;
+  }
+
+  article {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
+    grid-gap: 1rem;
+    grid-template-areas: none;
+  }
+
+  .upgradeSection {
+    grid-area: auto;
+  }
+
+  .reviews {
+    grid-area: auto;
+  }
+}
