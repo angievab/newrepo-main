@@ -13,8 +13,13 @@ body {
 }
 
 h1,
+.homePage{
+  font-family: 'Cinzel', serif;
+}
+
 h2,
-a{
+a,
+p{
   font-family: 'Fauna One', serif;
 }
 
@@ -193,6 +198,77 @@ footer {
   margin: 0;
 }
 
+/* Cars View */
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+#inv-display li {
+  text-align: center;
+  list-style-type: none;
+  border: 1px solid #EDC7B7;
+  border-radius: 1rem;
+}
+
+#inv-display hr {
+  height: 5px;
+  background: #EDC7B7;
+}
+
+.vehicleSection {
+  text-align: center;
+  padding: 0 0.5rem 0.5rem;
+}
+
+.vehicleSection h2 {
+  margin: 0 0 0.5rem;
+  font-family: 'Fauna One', serif;
+}
+
+.vehicleSection h2 a {
+  color: #000000;
+}
+
+.vehicleSection span {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* Cars Details */
+.vehicleContainer {
+  display: block;
+}
+
+.vehicleContainer div:first-child {
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.vehicleContainer div:first-child > img {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.vehicleContainer div:last-child p {
+
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 0;
+  background: #EDC7B7;
+  border-radius: 1rem;
+}
+
+.vehicleContainer div:last-child p:first-child {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
 @media screen and (min-width: 900px) {
   body {
     background-image: url("/images/site/checkerboard.jpg");
@@ -219,5 +295,16 @@ footer {
 
   .reviews {
     grid-area: auto;
+  }
+
+  /* Cars View */
+  .vehicleContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .vehicleContainer div:first-child > img {
+    margin-bottom: 0rem;
   }
 }
