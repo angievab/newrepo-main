@@ -5,6 +5,14 @@
     } %>
  
  <%- messages() %>
+ 
+ <% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 
  <div class="register">
     <form action="/account/register" method="post">
@@ -41,6 +49,13 @@
       </div>
       <div class="inputField">
         <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="account_password"
+          required
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+        />
         <span class="inputFieldInfo">
           Passwords must be at least 12 characters, containing at least 1 capital letter,
           1 number, and 1 special character.

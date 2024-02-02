@@ -37,20 +37,6 @@ invCont.buildByInventoryId = async (req, res, next) => {
   });
 }
 
-/* ***************************
-*  Build vehicle inventory view
-* ************************** */
-/*invCont.buildVehicleManagement = async (req, res, next) => {
-  let nav = await utilities.getNav()
-  const classificationSelect = await utilities.buildOptions()
-  res.render("inventory/management", {
-     title: "Vehicle Management",
-     nav,
-     errors: null,
-     classificationSelect,
-  });
-}*/
-
 /***************************
 *  Return Inventory by Classification As JSON
 * ************************** */

@@ -41,7 +41,7 @@ p{
 .siteName a {
   font-size: 2rem;
   text-decoration: none;
-  color: #262626;
+  color: black;
   font-weight: 500;
 }
 
@@ -49,13 +49,8 @@ p{
   font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
-  color: #262626;
   text-transform: uppercase;
-}
-
-.navHead {
-  background: #EDC7B7;
-  text-decoration: none;
+  color: black;
 }
 
 .navHead ul {
@@ -68,11 +63,11 @@ p{
   justify-content: space-around;
   padding-inline-start: 0;
   font-family: 'Cinzel', serif;
+  background: #EDC7B7;
 }
 
 /* Body */
 main > h1 {
-  color: #262626;
   font-weight: 700;
 }
 
@@ -110,30 +105,12 @@ section > div p:last-child {
   margin-bottom: 0.25rem;
 }
 
-section button {
-  background: #EDC7B7;
-  width: 100%;
-  margin: 0.5rem auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  border-color: rgba(255, 255, 255, 0.5);
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
 article {
   display: grid;
   grid-template-areas:
     "reviews"
     "upgrades";
   gap: 0.5rem;
-}
-
-article > div h2 {
-  color: #262626;
 }
 
 .upgradeSection {
@@ -175,6 +152,8 @@ article > div h2 {
 
 .parts a {
   font-size: 0.9rem;
+  color: black;
+  text-decoration: none;
 }
 
 .reviews nav ul {
@@ -187,6 +166,19 @@ article > div h2 {
   padding-bottom: 0.5rem;
 }
 
+button {
+  background: #EDC7B7;
+  width: 100%;
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-color: rgba(255, 255, 255, 0.5);
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
 /* Footer */
 footer {
   margin: 1rem 0;
@@ -194,8 +186,9 @@ footer {
 
 .copyright {
   font-size: 0.8rem;
-  color: #262626;
+  color: black;
   margin: 0;
+  text-decoration: none;
 }
 
 /* Cars View */
@@ -230,7 +223,7 @@ footer {
 }
 
 .vehicleSection h2 a {
-  color: #000000;
+  color: black;
 }
 
 .vehicleSection span {
@@ -267,6 +260,73 @@ footer {
 .vehicleContainer div:last-child p:first-child {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+}
+
+/* Login and Register */
+.inputField {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.inputField input {
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+  outline-color: black;
+}
+
+.inputField input:focus:invalid {
+  background: #EDC7B7;
+}
+
+.inputFieldInfo:first-child {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.inputFieldInfo {
+  font-size: 0.85rem;
+  font-style: italic;
+  margin: 0.5rem;
+  font-weight: 500;
+}
+
+/* Login View */
+.login{
+  max-width: 300px;
+  padding: 1rem;
+  border: 1px solid black;
+  background: #EDC7B7;
+  border-radius: 0.75rem;
+  margin: auto;
+}
+
+.formLink {
+  font-size: 1rem;
+}
+
+.formLink a {
+  color: black;
+}
+
+/* Register View */
+.register {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.register .updateInfo h2 {
+  margin: 0;
+}
+
+.register{
+  max-width: 300px;
+  padding: 1rem;
+  border: 1px solid black;
+  background: #EDC7B7;
+  border-radius: 0.75rem;
+  margin: auto;
 }
 
 @media screen and (min-width: 900px) {
