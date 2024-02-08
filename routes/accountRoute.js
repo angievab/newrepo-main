@@ -11,20 +11,22 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin))
 // Route build Register is clicked 
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
+// Route build Management is clicked 
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
+
 // Process the registration data
 router.post(
     "/register",
-    regValidate.registationRules(),
+    regValidate.registrationRules(),
     regValidate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
   )
 
-  // Process the login attempt
-router.post(
-    "/login",
-    (req, res) => {
-      res.status(200).send('login process')
-    }
-  )
-  
+  // Process login 
+router.post('/login',
+regValidate.loginRules(),
+regValidate.checkLoginData,
+utilities.handleErrors(accountController.accountLogin)
+)
+
 module.exports = router
