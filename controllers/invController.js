@@ -37,6 +37,96 @@ invCont.buildByInventoryId = async (req, res, next) => {
   });
 }
 
+/* ***************************
+ *  Build vehicle by management view
+ * ************************** */
+invCont.buildVehicleManagement = async (req, res, next) => {
+  let nav = await utilities.getNav()
+  const classificationSelect = await utilities.buildOptions()
+  //const classificationSelect = await utilities.buildClassificationList()
+  res.render("inventory/management", {
+     title: "Vehicle Management",
+     nav,
+     errors: null,
+     classificationSelect,
+  });
+}
+/* ***************************
+ *  Build adding classification view
+ * ************************** */
+invCont.buildAddClassification = async (req, res, next) => {
+  let nav = await utilities.getNav()
+  res.render("inventory/addclassification", {
+     title: "Add New Classification",
+     nav,
+     errors: null,
+  });
+}
+
+invCont.addClassification = async (req, res) => {
+  const { classification_name } = req.body
+  const addResult = await invModel.registerAddClassification(classification_name)
+  let nav = await utilities.getNav()
+  let classificationSelect = await utilities.buildOptions()
+  if (addResult) {
+     req.flash(
+        "notice",
+        `The ${classification_name} classification was succesfully added.`
+     )
+     res.status(201).render("inventory/management", {
+        title: "Vehicle Management",
+        nav,
+        errors: null,
+        classificationSelect
+     })
+  } else {
+     req.flash("notice", "Sorry, the operation failed.")
+     res.status(501).render("inventory/addclassification", {
+        title: "Add Classification",
+        nav,
+     })
+  }
+}
+
+/* ***************************
+ *  Build adding inventory view
+ * ************************** */
+invCont.buildAddInventory = async (req, res, next) => {
+  let nav = await utilities.getNav()
+  let options = await utilities.buildOptions()
+  res.render("inventory/addinventory", {
+     title: "Add New Inventory",
+     nav,
+     options,
+     errors: null,
+  });
+}
+
+invCont.addInventory = async (req, res) => {
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price,  inv_miles, inv_color, classification_id } = req.body
+  const addResult = await invModel.registerAddinventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price,  inv_miles, inv_color, classification_id)
+  let nav = await utilities.getNav()
+  let classificationSelect = await utilities.buildOptions()
+  if (addResult) {
+     req.flash(
+        "notice",
+        `The ${inv_model} vehicle was succesfully added.`
+     )
+     res.status(201).render("inventory/management", {
+        title: "Vehicle Management",
+        nav,
+        errors: null,
+        classificationSelect,
+     })
+  } else {
+     req.flash("notice", "Sorry, the operation failed.")
+     res.status(501).render("inventory/addinventory", {
+        title: "Add Inventory",
+        nav,
+     })
+  }
+}
+
 /***************************
 *  Return Inventory by Classification As JSON
 * ************************** */
@@ -49,5 +139,33 @@ invCont.getInventoryJSON = async (req, res, next) => {
      next(new Error("No data returned"))
   }
 }
+
+ /* ***************************
+ *  Build edit inventory view
+ * ************************** */
+ /*invCont.buildEditInventory = async (req, res, next) => {
+   const inv_id = parseInt(req.params.inv_id)
+   let nav = await utilities.getNav()
+   let data = await invModel.getVehicleByInventoryId(inv_id)
+   let options = await utilities.buildOptions(data[0].classification_id)
+   const name = `${data[0].inv_make} ${data[0].inv_model}`;
+   res.render("inventory/editinventory", {
+      title: `Edit ${name} `,
+      nav,
+      options: options,
+      errors: null,
+      inv_id: data[0].inv_id,
+      inv_make: data[0].inv_make,
+      inv_model: data[0].inv_model,
+      inv_year: data[0].inv_year,
+      inv_description: data[0].inv_description,
+      inv_image: data[0].inv_image,
+      inv_thumbnail: data[0].inv_thumbnail,
+      inv_price: data[0].inv_price,
+      inv_miles: data[0].inv_miles,
+      inv_color: data[0].inv_color,
+      classification_id: data[0].classification_id
+   });
+}*/
 
 module.exports = invCont

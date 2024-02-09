@@ -19,7 +19,10 @@ h1,
 
 h2,
 a,
-p{
+p,
+label,
+::placeholder,
+.notice {
   font-family: 'Fauna One', serif;
 }
 
@@ -270,10 +273,11 @@ footer {
   font-size: 1rem;
 }
 
-.inputField input {
+.inputField input, textarea {
   padding: 0.35rem;
   border-radius: 0.25rem;
   outline-color: black;
+  border: 1px solid black;
 }
 
 .inputField input:focus:invalid {
@@ -327,6 +331,17 @@ footer {
   background: #EDC7B7;
   border-radius: 0.75rem;
   margin: auto;
+}
+
+/* Management View */
+.management p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Add Classification View */
+.addClassification .inputField {
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 900px) {

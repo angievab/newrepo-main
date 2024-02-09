@@ -4,7 +4,14 @@
       res.redirect('/')
     } %>
  
- <p>You're logged in.</p>
-
  <%- messages() %>
 
+ <% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<p>You're logged in.</p>

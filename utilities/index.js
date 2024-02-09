@@ -87,13 +87,29 @@ Util.buildDetailView = async (data) => {
    return detail
 }
 
+/* **************************************
+* Build drop-down select list for add inventory form.
+* ************************************ */
+Util.buildOptions = async (optionSelected) => {
+  let data = await invModel.getClassifications()
+  let options = `
+                 <select name="classification_id" id="classificationList" required>
+                    <option selected disabled hidden>
+                       Choose a classification
+                    </option>`
+  data.rows.forEach(row => {
+     options += `<option value="${row.classification_id}" ${row.classification_id === Number(optionSelected) ? 'selected' : ''}> ${row.classification_name} </option>`
+  })
+  options += `</select>`
+  return options
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
-
 
 /* ****************************************
 * Middleware to check token validity
@@ -117,6 +133,7 @@ Util.checkJWTToken = (req, res, next) => {
    next()
   }
  }
+ 
  /* ****************************************
  *  Check Login
  * ************************************ */
@@ -128,5 +145,5 @@ Util.checkJWTToken = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
- 
+
 module.exports = Util
