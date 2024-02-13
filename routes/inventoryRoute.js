@@ -35,10 +35,10 @@ router.get("/edit/:inv_id",
     utilities.handleErrors(invController.buildEditInventory))
 
 // Delete an Item from Inventory Activity
-/*router.get("/delete/:inv_id",
+router.get("/delete/:inv_id",
    utilities.checkLogin,
    //utilities.checkPermission,
-   utilities.handleErrors(invController.buildDeleteInventory))*/
+   utilities.handleErrors(invController.buildDeleteInventory))
 
 // Process the add classification ADD PERMISSIONS
 router.post('/addclassification', 
@@ -63,6 +63,6 @@ router.post("/update/",
    utilities.handleErrors(invController.updateInventory));
 
 // Process the deletion of an Item from Inventory Activity
-//router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
 
 module.exports = router;

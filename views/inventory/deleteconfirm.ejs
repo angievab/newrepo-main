@@ -1,4 +1,4 @@
-<%#<% if (title) { %>
+<% if (title) { %>
     <h1><%= title %></h1>
     <% } else {
       res.redirect('/')
@@ -28,6 +28,7 @@
           placeholder="Min of 3 characters"
           required
           value="<%= inv_make %>"
+          readonly
         />
       </div>
   
@@ -41,6 +42,7 @@
           placeholder="Min of 3 characters"
           required
           value="<%= inv_model %>"
+          readonly
         />
       </div>
   
@@ -54,6 +56,7 @@
           pattern="[0-9]{4}"
           required
           value="<%= inv_year %>"
+          readonly
         />
       </div>
 
@@ -67,9 +70,10 @@
           pattern="^([0-9\.]*$)"
           required
           value="<%= inv_price %>"
+          readonly
         />
       </div>
-  
+      
       <button type="submit">Delete Vehicle</button>
       <input type="hidden" name="inv_id"
        <% if(locals.inv_id) { %>

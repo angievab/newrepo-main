@@ -117,4 +117,17 @@ const updateInventory = async (
   }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getVehicleByInventoryId, registerAddClassification, registerAddinventory, checkExistingClassification, updateInventory }
+/* *****************************
+*   Delete existing inventory 
+* *************************** */
+const deleteInventoryItem = async (inv_id) => {
+  try {
+    const sql = "DELETE FROM inventory WHERE inv_id = $1";
+    const data = await pool.query(sql, [inv_id])
+    return data
+  } catch (error) {
+    new Error("Delete inventory error")
+  }
+}
+
+module.exports = { getClassifications, getInventoryByClassificationId, getVehicleByInventoryId, registerAddClassification, registerAddinventory, checkExistingClassification, updateInventory, deleteInventoryItem }
