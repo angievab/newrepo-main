@@ -1,4 +1,4 @@
-<%# <% if (title) { %>
+<% if (title) { %>
     <h1><%= title %></h1>
     <% } else {
       res.redirect('/')
@@ -135,10 +135,12 @@
           <%- options %>
       </div>
 
-      <button type="submit">Update Vehicle</button>
+      <button type="submit" disabled>Update Vehicle</button>
       <input type="hidden" name="inv_id"
     <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
-<% } %>>
+    <% } %>>
 
     </form>
   </div>
+
+  <script src="../../js/inv-update.js"></script>

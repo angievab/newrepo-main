@@ -120,16 +120,67 @@ validate.checkInvData = async (req, res, next) => {
    next()
 }
 
+/*  **********************************
+ *  Update Inventory Data Validation Rules
+ * ********************************* */
+validate.newInventoryRules = () => {
+   return [
+      body("inv_make")
+         .isLength({ min: 3 })
+         .withMessage("Please provide a correct brand name."),
+
+      body("inv_model")
+         .isLength({ min: 3 })
+         .withMessage("Please check the model."),
+
+      body("inv_year")
+         .isNumeric({ min: 4, max: 4 })
+         .withMessage("Please check if the year is correct."),
+
+      body("inv_description")
+         .isLength({ min: 1 })
+         .withMessage("Please follow the requirements."),
+
+      body("inv_image")
+         .isLength({ min: 10 })
+         .withMessage("Please re enter a picture."),
+
+      body("inv_thumbnail")
+         .isLength({ min: 10 })
+         .withMessage("Please re enter a picture."),
+
+      body("inv_price")
+         .isNumeric({ min: 1 })
+         .withMessage("Please enter integer numbers."),
+
+      body("inv_miles")
+         .isNumeric({ min: 1 })
+         .withMessage("Please enter integer numbers."),
+
+      body("inv_color")
+         .isLength({ min: 1 })
+         .withMessage("Please provide an adecuate color"),
+
+      body("classification_id")
+         .isNumeric({ min: 1 })
+         .withMessage("Please choose a classification."),
+
+      body("inv_id")
+         .isLength({ min: 1 })
+         .withMessage("Inventory Id does not meet requirements")
+   ]
+}
+
 /* ******************************
  * Errors will be directed back to the edit view
  * ***************************** */
-/*validate.checkUpdateData = async (req, res, next) => {
-   const {  inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
+validate.checkUpdateData = async (req, res, next) => {
+   const {  inv_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
    let errors = []
    errors = validationResult(req)
    if (!errors.isEmpty()) {
       let nav = await utilities.getNav()
-      let options = await utilities.buildOptions()
+      let options = await utilities.buildOptions(classification_id)
       res.render("inventory/editinventory", {
          errors,
          title: "Edit Inventory",
@@ -150,6 +201,6 @@ validate.checkInvData = async (req, res, next) => {
       return
    }
    next()
-}*/
+}
 
 module.exports = validate
