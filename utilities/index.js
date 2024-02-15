@@ -90,7 +90,7 @@ Util.buildDetailView = async (data) => {
 /* **************************************
 * Build drop-down select list for add inventory form.
 * ************************************ */
-Util.buildOptions = async (optionSelected) => {
+Util.buildClassificationList = async (optionSelected) => {
   let data = await invModel.getClassifications()
   let options = `
                  <select name="classification_id" id="classificationList" required>

@@ -98,12 +98,12 @@ validate.checkInvData = async (req, res, next) => {
    errors = validationResult(req)
    if (!errors.isEmpty()) {
       let nav = await utilities.getNav()
-      let options = await utilities.buildOptions()
+      let classificationSelect = await utilities.buildClassificationList()
       res.render("inventory/addinventory", {
          errors,
          title: "Add Inventory",
          nav,
-         options,
+         classificationSelect,
          inv_make,
          inv_model,
          inv_year,
@@ -180,12 +180,12 @@ validate.checkUpdateData = async (req, res, next) => {
    errors = validationResult(req)
    if (!errors.isEmpty()) {
       let nav = await utilities.getNav()
-      let options = await utilities.buildOptions(classification_id)
+      let classificationSelect = await utilities.buildClassificationList(classification_id)
       res.render("inventory/editinventory", {
          errors,
          title: "Edit Inventory",
          nav,
-         options,
+         classificationSelect,
          inv_id,
          inv_make,
          inv_model,
