@@ -14,50 +14,58 @@ router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByI
 // Route to build inventory by vehicle view
 router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildVehicleManagement));
 
-// Route to build management vehicle view ADD CHECKLOGIN Y PERMISSIONS
-router.get("/", utilities.handleErrors(invController.buildVehicleManagement));
+// Route to build management vehicle view 
+router.get("/", utilities.checkLogin,
+    utilities.checkPermission, 
+    utilities.handleErrors(invController.buildVehicleManagement));
 
-// Route to add classification view ADD PERMISSIONS
+// Route to add classification view
 router.get("/addclassification", utilities.checkLogin,
+   utilities.checkPermission, 
    utilities.handleErrors(invController.buildAddClassification));
 
-// Route to add inventory view ADD PERMISSIONS
+// Route to add inventory view 
 router.get("/addinventory", utilities.checkLogin, 
+    utilities.checkPermission, 
     utilities.handleErrors(invController.buildAddInventory));
 
-// Route to get inventory view CHECKLOGIN Y PERMISSIONS
-    router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+// Route to get inventory view 
+    router.get("/getInventory/:classification_id", utilities.checkLogin,
+    utilities.checkPermission, 
+    utilities.handleErrors(invController.getInventoryJSON))
 
-// Update an Item from Inventory Activity ADD PERMISSIONS
+// Update an Item from Inventory Activity
 router.get("/edit/:inv_id",
     utilities.checkLogin,
-    //utilities.checkPermission,
+    utilities.checkPermission,
     utilities.handleErrors(invController.buildEditInventory))
 
 // Delete an Item from Inventory Activity
 router.get("/delete/:inv_id",
    utilities.checkLogin,
-   //utilities.checkPermission,
+   utilities.checkPermission,
    utilities.handleErrors(invController.buildDeleteInventory))
 
-// Process the add classification ADD PERMISSIONS
+// Process the add classification 
 router.post('/addclassification', 
     utilities.checkLogin,  
+    utilities.checkPermission,
     invValidate.classificationRules(), 
     invValidate.checkClassData, 
     utilities.handleErrors(invController.addClassification));
 
-// Process the add inventory ADD PERMISSIONS
+// Process the add inventory 
 router.post('/addinventory', 
     utilities.checkLogin, 
+    utilities.checkPermission,
     invValidate.inventoryRules(), 
     invValidate.checkInvData,
     utilities.handleErrors(invController.addInventory));
 
-// Processing the update of an Item from Inventory Activity ADD PERMISSIONS
+// Processing the update of an Item from Inventory Activity
 router.post("/update/",
    utilities.checkLogin,
-   //utilities.checkPermission,
+   utilities.checkPermission,
    invValidate.newInventoryRules(),
    invValidate.checkUpdateData,
    utilities.handleErrors(invController.updateInventory));

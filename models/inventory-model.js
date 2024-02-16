@@ -130,4 +130,13 @@ const deleteInventoryItem = async (inv_id) => {
   }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getVehicleByInventoryId, registerAddClassification, registerAddinventory, checkExistingClassification, updateInventory, deleteInventoryItem }
+module.exports = { 
+  getClassifications, 
+  getInventoryByClassificationId, 
+  getVehicleByInventoryId, 
+  registerAddClassification, 
+  registerAddinventory, 
+  checkExistingClassification, 
+  updateInventory, 
+  deleteInventoryItem 
+}

@@ -22,7 +22,8 @@ a,
 p,
 label,
 ::placeholder,
-.notice {
+.notice 
+ {
   font-family: 'Fauna One', serif;
 }
 
@@ -297,7 +298,7 @@ footer {
 }
 
 /* Login View */
-.login{
+.login  {
   max-width: 300px;
   padding: 1rem;
   border: 1px solid black;
@@ -320,7 +321,7 @@ footer {
   margin-bottom: 1rem;
 }
 
-.register .updateInfo h2 {
+.register  {
   margin: 0;
 }
 
@@ -342,6 +343,10 @@ footer {
 /* Add Classification View */
 .addClassification .inputField {
   margin-bottom: 0;
+}
+
+.updateInfo h2, p {
+  color: red;
 }
 
 @media screen and (min-width: 900px) {

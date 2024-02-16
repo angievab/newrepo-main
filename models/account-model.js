@@ -1,7 +1,7 @@
 const pool = require("../database/")
 
 /* *****************************
-*   Register new account
+*    Register new account
 * *************************** */
 async function registerAccount(account_firstname, account_lastname, account_email, account_password){
     try {
@@ -26,7 +26,7 @@ async function checkExistingEmail(account_email){
 }
 
 /* *****************************
-* Return account data using email address
+*    Return account data using email address
 * ***************************** */
 async function getAccountByEmail (account_email) {
   try {
@@ -38,4 +38,51 @@ async function getAccountByEmail (account_email) {
     return new Error("No matching email found")
   }
 } 
-  module.exports = {registerAccount, checkExistingEmail, getAccountByEmail};
+
+/* *****************************
+*    Get account data by Id
+* ***************************** */
+async function getAccountById(account_id) {
+  try {
+     const result = await pool.query('SELECT * FROM public.account WHERE account_id=$1',
+        [account_id]
+     )
+     return result.rows[0]
+  } catch (error) {
+     console.error("getaccountbyid error " + error)
+  }
+
+}
+
+/* *****************************
+*    Update account data
+* ***************************** */
+async function updateAccount(account_firstname, account_lastname, account_email, account_id) {
+  try {
+     const sql = "UPDATE account SET account_firstname = $1, account_lastname = $2, account_email = $3 WHERE account_id = $4 RETURNING *"
+     return await pool.query(sql, [account_firstname, account_lastname, account_email, account_id])
+  } catch (error) {
+     console.error("model error: " + error)
+  }
+}
+
+/* *****************************
+*    Update password
+* ***************************** */
+async function updatePassword(account_password, account_id) {
+  try {
+     const sql = "UPDATE account SET account_password = $1 WHERE account_id = $2 RETURNING *"
+     return await pool.query(sql, [account_password, account_id])
+  } catch (error) {
+     console.error("Model error " + error)
+  }
+}
+  
+module.exports = {
+  registerAccount, 
+  checkExistingEmail, 
+  getAccountByEmail, 
+  getAccountById, 
+  updateAccount, 
+  updatePassword
+}
